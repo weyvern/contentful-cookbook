@@ -1,38 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import Dish from './Dish';
+import DishShowcase from './DishShowcase';
 import client from '../contentful/client';
+import spinner from '../assets/img/spinner.gif';
 
 const Dishes = ({ title }) => {
+  const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    client
-      .getEntries({ content_type: title })
-      .then(res => {
-        res.items.forEach(item => {
-          client
-            .getAsset(item.fields.mainImage.sys.id)
-            .then(asset => {
-              item.fields.imageURL = `https:${asset.fields.file.url}`;
-              setPosts(res.items);
-            })
-            .catch(err => {
-              console.error(err.message);
-              setPosts([]);
-            });
-        });
-      })
-      .catch(err => {
-        console.error(err);
-        setPosts([]);
-      });
+    async function getContent() {
+      let entries = await client.getEntries({ content_type: title });
+      const { items } = entries;
+      for (const item of items) {
+        let image = await client.getAsset(item.fields.mainImage.sys.id);
+        item.fields.imageURL = `https:${image.fields.file.url}`;
+      }
+      setPosts(items);
+    }
+    getContent();
+    setTimeout(() => setLoading(false), 200);
   }, [title]);
-  console.log(posts);
   return (
     <main className='container mt-5'>
       <h1 className='text-uppercase text-secondary'>{title}</h1>
-      {posts.map(post => (
-        <Dish key={post.sys.id} post={post} />
-      ))}
+      {loading ? (
+        <img src={spinner} alt='loading' />
+      ) : (
+        <div className='row'>
+          {posts.map(post => (
+            <DishShowcase key={post.sys.id} post={post} />
+          ))}
+        </div>
+      )}
     </main>
   );
 };

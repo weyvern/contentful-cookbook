@@ -1,51 +1,75 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../assets/img/logo.png';
 
 const Navbar = () => {
   return (
     <nav className='navbar navbar-expand-sm navbar-dark bg-dark'>
-      <a className='navbar-brand' href='index.html'>
+      <NavLink className='navbar-brand' to='/'>
         <img src={logo} alt='Cookbook' width='250px' />
-      </a>
+      </NavLink>
       <button
         className='navbar-toggler'
         type='button'
         data-toggle='collapse'
-        data-target='#navbarsExample04'
-        aria-controls='navbarsExample04'
+        data-target='#mainMenu'
+        aria-controls='mainMenu'
         aria-expanded='false'
         aria-label='Toggle navigation'
       >
         <span className='navbar-toggler-icon'></span>
       </button>
-
-      <div className='collapse navbar-collapse' id='navbarsExample04'>
+      <div className='collapse navbar-collapse' id='mainMenu'>
         <ul className='navbar-nav ml-auto'>
-          <li className='nav-item active'>
-            <Link className='nav-link' to='/'>
+          <li className='nav-item'>
+            <NavLink
+              exact={true}
+              activeClassName='active'
+              className='nav-link'
+              to='/'
+            >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/breakfast'>
+            <NavLink
+              exact={true}
+              activeClassName='active'
+              className='nav-link'
+              to='/breakfast'
+            >
               Breakfast
-            </Link>
+            </NavLink>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/lunch'>
+            <NavLink
+              exact={true}
+              activeClassName='active'
+              className='nav-link'
+              to='/lunch'
+            >
               Lunch
-            </Link>
+            </NavLink>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/dinner'>
+            <NavLink
+              exact={true}
+              activeClassName='active'
+              className='nav-link'
+              to='/dinner'
+            >
               Dinner
-            </Link>
+            </NavLink>
           </li>
           <li className='nav-item'>
-            <Link className='nav-link' to='/about'>
+            <NavLink
+              exact={true}
+              activeClassName='active'
+              className='nav-link'
+              to='/about'
+            >
               About
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>
