@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const DishShowcase = ({ post: { fields } }) => {
+const DishShowcase = ({ post: { fields }, type }) => {
   const { imageURL, title, description, slug } = fields;
   return (
     <div className='card col-xs-6 col-md-4 m-2'>
@@ -11,7 +11,7 @@ const DishShowcase = ({ post: { fields } }) => {
         <p className='card-text'>{description}</p>
       </div>
       <div className='card-body'>
-        <NavLink to={`/dish/${slug}`} className='card-link'>
+        <NavLink to={`/${type}/${slug}`} className='card-link'>
           More
         </NavLink>
       </div>

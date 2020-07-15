@@ -27,7 +27,7 @@ const App = () => {
           path='/dinner'
           render={props => <Dishes {...props} title={'dinner'} />}
         />
-        <Route exact path='/dish/:slug' component={Dish} />
+        <Route exact path='/:type/:slug' component={Dish} />
         <Route exact path='/about' component={About} />
       </Switch>
     </Router>

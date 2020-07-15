@@ -27,7 +27,7 @@ const Dishes = ({ title }) => {
       ) : (
         <div className='row'>
           {posts.map(post => (
-            <DishShowcase key={post.sys.id} post={post} />
+            <DishShowcase key={post.sys.id} post={post} type= {title}/>
           ))}
         </div>
       )}
