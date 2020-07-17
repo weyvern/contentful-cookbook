@@ -23,6 +23,7 @@ const Dish = () => {
     getContent();
 
     setTimeout(() => setLoading(false), 200);
+    //eslint-disable-next-line
   }, []);
   return (
     <main className='container mt-5'>
