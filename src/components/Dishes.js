@@ -23,11 +23,11 @@ const Dishes = ({ title }) => {
     <main className='container mt-5'>
       <h1 className='text-uppercase text-secondary'>{title}</h1>
       {loading ? (
-        <img src={spinner} alt='loading' />
+        <img src={spinner} alt='loading' className='d-block mx-auto' />
       ) : (
         <div className='row'>
           {posts.map(post => (
-            <DishShowcase key={post.sys.id} post={post} type= {title}/>
+            <DishShowcase key={post.sys.id} post={post} type={title} />
           ))}
         </div>
       )}
